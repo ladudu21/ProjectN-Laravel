@@ -89,6 +89,8 @@ class SocialAuthController extends Controller
                     'user_id' => $newUser->id
                 ]);
 
+                $newUser->assignRole('user');
+
                 Auth::login($newUser);
 
                 return redirect('/dashboard');
