@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <p class="h1">Admin Page</p>
+    <h1>Admin Page</h1>
     <div class="d-flex justify-content-start">
         <div class="dropdown p-3">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown"
@@ -23,7 +23,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Index</a></li>
-                <li><a class="dropdown-item" href="#">Add</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Add</a></li>
             </ul>
         </div>
         <div class="dropdown p-3">

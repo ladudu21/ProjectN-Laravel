@@ -1,9 +1,10 @@
 @extends('admin.dashboard')
 @section('content')
-    <form action="{{ route('admin.users.store') }}" method="POST">
+    <form action="{{ route('admin.users.update', $user) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
             <label for="email">Email</label>
         </div>
         @error('email')
@@ -11,15 +12,7 @@
         @enderror
 
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password" name="password">
-            <label for="password">Password</label>
-        </div>
-        @error('password')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
             <label for="name">Name</label>
         </div>
         @error('name')
@@ -27,10 +20,12 @@
         @enderror
 
         <div class="form-floating mb-3">
+            @php
+                $role_name = $user->getRoleNames()->implode('name', ', ');
+            @endphp
             <select class="form-select" aria-label="Default select example" id="role" name="role">
-                <option value="" disabled selected>Select an option</option>
                 @foreach ($roles as $role)
-                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    <option value="{{ $role->name }}" {{ $role->name == $role_name ? 'selected' : ''}}>{{ $role->name }}</option>
                 @endforeach
             </select>
             <label for="role">Role</label>
@@ -39,6 +34,6 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        <button type="submit" class="btn btn-primary rounded-pill">Add</button>
+        <button type="submit" class="btn btn-primary rounded-pill">Edit</button>
     </form>
 @endsection
