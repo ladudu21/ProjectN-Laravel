@@ -4,22 +4,22 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Publish</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @foreach ($posts as $post)
                 <tr>
-                    <th>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->getRoleNames()->implode('name', ', ') }}</td>
+                    <th>{{ $post->id }}</td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->user->name }}</td>
+                    <td>{{ $post->published_at }}</td>
                     <td class="d-flex">
-                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-info m-1">Edit</a>
-                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
+                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-info m-1">Edit</a>
+                        <form method="POST" action="{{ route('admin.posts.destroy', $post) }}"
                             onsubmit="return confirm('Delete ?');">
                             @csrf
                             @method('DELETE')
@@ -30,5 +30,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $users->links() }}
+    {{ $posts->links() }}
 @endsection

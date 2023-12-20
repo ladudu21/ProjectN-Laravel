@@ -32,8 +32,8 @@
                 Posts
             </button>
             <ul class="dropdown-menu p-3">
-                <li><a class="dropdown-item" href="#">Index</a></li>
-                <li><a class="dropdown-item" href="#">Add</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.posts.index') }}">Index</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.posts.create') }}">Add</a></li>
             </ul>
         </div>
         <div class="dropdown p-3">

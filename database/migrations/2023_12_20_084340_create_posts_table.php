@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('social_logins', function (Blueprint $table) {
-            $table->string('social_id')->primary();
-            $table->enum('social_type', ['google', 'facebook']);
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('content');
+            $table->integer('total_like');
+            $table->timestamp('published_at');
+            $table->string('thumb');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('social_logins');
+        Schema::dropIfExists('posts');
     }
 };
