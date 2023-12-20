@@ -5,21 +5,17 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @foreach ($categories as $category)
                 <tr>
-                    <th>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->getRoleNames()->implode('name', ', ') }}</td>
+                    <th>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
                     <td class="d-flex">
-                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-info m-1">Edit</a>
-                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
+                        <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-info m-1">Edit</a>
+                        <form method="POST" action="{{ route('admin.categories.destroy', $category) }}"
                             onsubmit="return confirm('Delete ?');">
                             @csrf
                             @method('DELETE')
@@ -30,5 +26,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $users->links() }}
+    {{ $categories->links() }}
 @endsection

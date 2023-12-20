@@ -72,9 +72,13 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        //
-        dd($request->input());
+        $validated = $request->validated();
+        $user->syncRoles($validated['role']);
 
+        $validated = $request->safe()->except(['role']);
+        $user->update($validated);
+        
+        return back()->with('message', 'Success!');
     }
 
     /**
