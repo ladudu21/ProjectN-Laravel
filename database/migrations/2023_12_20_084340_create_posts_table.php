@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('content');
+            $table->text('content');
             $table->integer('total_like');
             $table->timestamp('published_at');
+            $table->boolean('status')->default(1)->comment('1: releashed; 0: unreleashe');
             $table->string('thumb');
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
 

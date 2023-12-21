@@ -1,4 +1,4 @@
 @extends('admin.dashboard')
 @section('content')
-@include('components.new-post')
+@include('components.edit-post')
 @endsection

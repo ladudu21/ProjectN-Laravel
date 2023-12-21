@@ -6,7 +6,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
+                <th scope="col">Category</th>
                 <th scope="col">Publish</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -16,7 +18,9 @@
                     <th>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->user->name }}</td>
+                    <td>{{ $post->category->name }}</td>
                     <td>{{ $post->published_at }}</td>
+                    <td>{{ $post->status ? 'Released' : 'Unreleased' }}</td>
                     <td class="d-flex">
                         <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-info m-1">Edit</a>
                         <form method="POST" action="{{ route('admin.posts.destroy', $post) }}"
