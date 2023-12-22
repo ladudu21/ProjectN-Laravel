@@ -16,7 +16,7 @@ class HomepageController extends Controller
 
     function showPost(Post $post) {
         return view('post', [
-            'post' => $post
+            'post' => $post,
         ]);
     }
 }

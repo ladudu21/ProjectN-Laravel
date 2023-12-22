@@ -8,7 +8,7 @@
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <a href="{{ route('post.show', $post) }}" class="card-link">Read</a>
                 </div>
-                <div class="blockquote-footer"> {{ $post->total_like }} likes</div>
+                <div class="blockquote-footer"> {{ $post->likes->count() }} likes</div>
                 <div class="card-footer text-muted">
                     At {{ $post->published_at }}
                 </div>

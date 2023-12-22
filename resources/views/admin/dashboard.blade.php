@@ -15,6 +15,9 @@
 
 <body>
     <h1>Admin Page</h1>
+    <a class="btn btn-primary" href="{{ route('homepage') }}">
+        Home
+    </a>
     <div class="d-flex justify-content-start">
         <div class="dropdown p-3">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown"

@@ -39,7 +39,6 @@ class PostController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = Auth::user()->id;
-        $validated['total_like'] = 0;
         $validated['slug'] = Str::slug($validated['title']) . '-' . Str::random(5);
 
         if (is_null($validated['published_at'])){

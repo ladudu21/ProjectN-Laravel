@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
             'title' => 'required|max:255|string',
             'category_id' => 'required',
             'content' => 'required',
-            'thumb' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
+            'thumb' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:5120',
             'published_at' => [
                 'sometimes',
                 function (string $attribute, mixed $value, Closure $fail) {
