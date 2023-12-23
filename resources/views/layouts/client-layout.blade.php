@@ -39,6 +39,36 @@
                                 <a class="nav-link active" href="{{ route('register') }}">Register</a>
                             @endif
                         @endauth
+                        @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('admin.dashboard') }}">Admin</a>
+                            </li>
+                        @endrole
+                        @role('writer')
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('writer.dashboard') }}">Writer</a>
+                            </li>
+                        @endrole
+                    </ul>
+                    <form class="d-flex mr-3" method="GET">
+                        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"
+                            name="search" value="{{ request()->get('search') }}">
+                        <button class="btn
+                            btn-outline-success"
+                            type="submit">Search</button>
+                    </form>
+                    @auth
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    @endauth
                 @endif
             </div>
         </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('post/{post:slug}', [HomepageController::class, 'showPost'])->name('post.show');
+
+Route::prefix('writer')->middleware(['role:writer'])->name('writer.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('writer.dashboard');
+    })->name('dashboard');
+
+    Route::resource('posts', WriterController::class)->except([
+        'store', 'update', 'destroy'
+    ]);
+});
