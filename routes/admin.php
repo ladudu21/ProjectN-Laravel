@@ -25,4 +25,4 @@ Route::middleware(['role:admin'])->group(function () {
 
 Route::resource('posts', PostController::class)->only([
     'store', 'update', 'destroy'
-])->middleware(['role: admin|writer']);
+])->middleware(['role:admin|writer']);

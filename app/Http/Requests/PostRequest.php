@@ -27,13 +27,14 @@ class PostRequest extends FormRequest
             'category_id' => 'required',
             'content' => 'required',
             'thumb' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:5120',
+            'tags' => 'nullable|string',
             'published_at' => [
                 'sometimes',
                 function (string $attribute, mixed $value, Closure $fail) {
                     if (!is_null($value) && $value < now()) {
                         $fail("The {$attribute} is invalid.");
                     }
-                },]
+                },],
         ];
     }
     public function attributes(): array

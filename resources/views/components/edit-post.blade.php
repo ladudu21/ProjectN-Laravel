@@ -48,5 +48,13 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="tags" name="tags" value="{{ $post->tagList() }}">
+        <label for="tags">Tags</label>
+    </div>
+    @error('tags')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
     <button type="submit" class="btn btn-primary rounded-pill">Update</button>
 </form>

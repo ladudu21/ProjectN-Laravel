@@ -10,6 +10,9 @@
 
             <div class="card-body text-dark">
                 <p class="card-text">{{ $post->content }}</p>
+                @foreach ($post->tags as $tag)
+                    <a class="btn btn-outline-primary btn-sm" href="">{{ $tag->name }}</a>
+                @endforeach
             </div>
             <div class="card-footer d-flex">
                 @auth
