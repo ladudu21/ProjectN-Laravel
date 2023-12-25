@@ -13,7 +13,8 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "predis/predis": "^2.2",
-        "spatie/laravel-permission": "^6.2"
+        "spatie/laravel-permission": "^6.2",
+        "tucker-eric/eloquentfilter": "^3.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

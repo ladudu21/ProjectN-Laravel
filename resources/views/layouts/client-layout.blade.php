@@ -52,13 +52,6 @@
                             </li>
                         @endrole
                     </ul>
-                    <form class="d-flex mr-3" method="GET">
-                        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search"
-                            name="search" value="{{ request()->get('search') }}">
-                        <button class="btn
-                            btn-outline-success"
-                            type="submit">Search</button>
-                    </form>
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
