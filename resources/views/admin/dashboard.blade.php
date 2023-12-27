@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.2/dist/js/coreui.bundle.min.js"
         integrity="sha384-yaqfDd6oGMfSWamMxEH/evLG9NWG7Q5GHtcIfz8Zg1mVyx2JJ/IRPrA28UOLwAhi" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -55,8 +56,8 @@
                 Notifications
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Index</a></li>
-                <li><a class="dropdown-item" href="#">Add</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.notifications.index') }}">Index</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.notifications.create') }}">Add</a></li>
             </ul>
         </div>
     </div>

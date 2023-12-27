@@ -30,7 +30,7 @@ class SocialAuthController extends Controller
 
                 Auth::login($findUser);
 
-                return redirect('/dashboard');
+                return redirect()->route('homepage');
 
             }else{
                 $newUser = User::create([
@@ -44,9 +44,11 @@ class SocialAuthController extends Controller
                     'user_id' => $newUser->id
                 ]);
 
+                $newUser->assignRole('user');
+
                 Auth::login($newUser);
 
-                return redirect('/dashboard');
+                return redirect()->route('homepage');
             }
 
         } catch (\Exception $e) {
@@ -64,8 +66,6 @@ class SocialAuthController extends Controller
         try {
 
             $user = Socialite::driver('facebook')->user();
-
-            dd($user->phone);
 
             $account = DB::table('social_logins')->where('social_id', $user->id)->first();
 
@@ -93,7 +93,7 @@ class SocialAuthController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect('/dashboard');
+                return redirect()->route('homepage');
             }
 
         } catch (\Exception $e) {

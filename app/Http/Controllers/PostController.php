@@ -62,7 +62,6 @@ class PostController extends Controller
 
             if (!is_null($validated['tags'])) {
                 $tags = explode(" ", $validated['tags']);
-
                 foreach ($tags as $tag_name) {
                     $tag = Tag::firstOrCreate([
                         'name' => $tag_name
@@ -133,6 +132,7 @@ class PostController extends Controller
 
                 $post->tags()->sync($tagList);
             }
+            else $post->tags()->detach();
 
         } catch (Exception $e) {
             DB::rollback();

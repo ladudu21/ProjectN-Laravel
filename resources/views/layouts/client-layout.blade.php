@@ -13,6 +13,7 @@
         integrity="sha384-yaqfDd6oGMfSWamMxEH/evLG9NWG7Q5GHtcIfz8Zg1mVyx2JJ/IRPrA28UOLwAhi" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    @vite('resources/js/app.js')
 </head>
 
 <body>
@@ -51,6 +52,31 @@
                                     href="{{ route('writer.dashboard') }}">Writer</a>
                             </li>
                         @endrole
+                        @auth
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button"
+                                        data-coreui-toggle="dropdown" aria-expanded="false" id="noti-button">
+                                        <i class="fa-solid fa-bell"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <a class="m-2" href="{{ route('notifications.show') }}">All notifications</a>
+                                        <li id="newNoti"></li>
+                                        @foreach ($notifications as $notification)
+                                            <li>
+                                                <div class="card m-2" style="width: 30rem;">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">{{ $notification->data['from'] }}</h6>
+                                                        <p class="card-text">{{ $notification->data['message'] }}</p>
+                                                    </div>
+                                                    <a href="/" class="stretched-link"></a>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                        @endauth
                     </ul>
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
@@ -69,5 +95,26 @@
 
     @yield('content')
 </body>
+@auth
+    <script type="module">
+        var userId = {{ Auth::user()->id }};
+        var channel = Echo.private('App.Models.User.' + userId)
+            .notification((notification) => {
+                var html =
+                    '<div class="card bg-light m-2" style="width: 30rem;"><div class="card-body"><h6 class="card-title">' +
+                    notification.from + '</h6><p class="card-text">' + notification.message +
+                    '</p></div><a href="/" class="stretched-link"></a></div>';
+
+                $('#newNoti').append(html);
+                $('#noti-button').addClass('btn-danger');
+            });
+    </script>
+@endauth
+<style>
+    .dropdown-menu {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+</style>
 
 </html>

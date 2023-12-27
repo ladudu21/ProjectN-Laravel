@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
     //Like
     Route::post('post/{post}/likes', [LikeController::class, 'store'])->name('likes.store');
+
+    //Notifications
+    Route::get('notifications', [HomepageController::class, 'showNotifications'])->name('notifications.show');
 });
 
 require __DIR__.'/auth.php';

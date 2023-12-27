@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
 {
@@ -15,7 +16,7 @@ class HomepageController extends Controller
 
         return view('welcome', [
             'posts' => $post,
-            'categories' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -24,5 +25,10 @@ class HomepageController extends Controller
         return view('post', [
             'post' => $post,
         ]);
+    }
+
+    function showNotifications()
+    {
+        return view('notifications');
     }
 }

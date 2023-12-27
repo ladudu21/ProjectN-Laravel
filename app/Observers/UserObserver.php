@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserObserver
 {
@@ -30,6 +31,8 @@ class UserObserver
     {
         $posts = $user->posts->pluck('id')->toArray();
         Post::destroy($posts);
+
+        DB::table('social_logins')->where('user_id', $user->id)->delete();
     }
 
     /**

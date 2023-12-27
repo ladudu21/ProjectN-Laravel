@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $validated = $request->safe()->except(['role']);
         $user->update($validated);
-        
+
         return back()->with('message', 'Success!');
     }
 
@@ -86,7 +86,16 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        $user->forceDelete();
         return back()->with('message', 'Deleted');
+    }
+
+    function getUsersByRole(Request $request) {
+        if ($request->role == "all") $users = User::all();
+        else $users = User::role($request->role)->get();
+
+        return response()->json([
+            'users' => $users
+        ]);
     }
 }

@@ -35,7 +35,6 @@ class PostFilter extends ModelFilter
             return $this->WhereHas('user', function (Builder $query) use ($author) {
                 $query->where('name', 'like', '%' . $author . '%');
             });
-
         }
     }
 

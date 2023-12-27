@@ -2,8 +2,7 @@
 @section('content')
     <div class="container mt-3">
         <form class="d-flex" method="GET">
-            <input class="form-control" type="text" placeholder="Title" name="title"
-                value="{{ request()->get('title') }}">
+            <input class="form-control" type="text" placeholder="Title" name="title" value="{{ request()->get('title') }}">
             <select class="form-select" aria-label="Default select example" id="category_id" name="category_id">
                 <option value="" disabled selected>Category</option>
                 @foreach ($categories as $category)
