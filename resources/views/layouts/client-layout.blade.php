@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="/">{{ __('Home') }}</a>
             <button class="navbar-toggler" type="button" data-coreui-toggle="collapse"
                 data-coreui-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -34,10 +34,10 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Log in</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <a class="nav-link active" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @endauth
                         @role('admin')
@@ -55,8 +55,8 @@
                         @auth
                             <li class="nav-item">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button"
-                                        data-coreui-toggle="dropdown" aria-expanded="false" id="noti-button">
+                                    <button class="btn dropdown-toggle" type="button" data-coreui-toggle="dropdown"
+                                        aria-expanded="false" id="noti-button">
                                         <i class="fa-solid fa-bell"></i>
                                     </button>
                                     <ul class="dropdown-menu">
@@ -94,6 +94,13 @@
     </nav>
 
     @yield('content')
+
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            <a class="text-reset" href="{!! route('change-language', ['en']) !!}">English</a>
+            <a class="text-reset" href="{!! route('change-language', ['vi']) !!}">Vietnam</a>
+        </div>
+    </footer>
 </body>
 @auth
     <script type="module">

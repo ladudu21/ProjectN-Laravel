@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomepageController extends Controller
 {
@@ -30,5 +31,12 @@ class HomepageController extends Controller
     function showNotifications()
     {
         return view('notifications');
+    }
+
+    function changeLanguage($language)
+    {
+        Session::put('website_language', $language);
+
+        return redirect()->back();
     }
 }

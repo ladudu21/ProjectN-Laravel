@@ -65,7 +65,7 @@
     @if ($message = Session::get('message'))
         <div class="container">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <p>{{ $message }}</p>
+                <p>{{ __($message) }}</p>
                 <button type="button" class="btn-close" data-coreui-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>

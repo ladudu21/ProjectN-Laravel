@@ -51,8 +51,9 @@ class NotificationController extends Controller
         } else {
             if ($validated['role'] == "all")
                 Notification::send(User::all()->except(Auth::id()), new AdminNotification($validated['message']));
-            else
+            else {
                 Notification::send(User::role($validated['role'])->get(), new AdminNotification($validated['message']));
+            }
         }
 
         return back()->with('message', 'Success');
@@ -73,14 +74,16 @@ class NotificationController extends Controller
         ]);
     }
 
-    function update(Request $request, $message_id) {
+    function update(Request $request, $message_id)
+    {
         DB::table('notifications')->where('message_id', $message_id)->update([
             'data->message' => $request->message
         ]);
         return back()->with('message', 'Success');
     }
 
-    function destroy($message_id) {
+    function destroy($message_id)
+    {
         DB::table('notifications')->where('message_id', $message_id)->delete();
         return back()->with('message', 'Deleted');
     }

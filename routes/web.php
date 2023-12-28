@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('change-language/{language}', [HomepageController::class, 'changeLanguage'])->name('change-language');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('notifications', [HomepageController::class, 'showNotifications'])->name('notifications.show');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('post/{post:slug}', [HomepageController::class, 'showPost'])->name('post.show');
 
