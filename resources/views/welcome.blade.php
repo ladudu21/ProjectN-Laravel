@@ -17,18 +17,20 @@
                 btn-outline-success" type="submit">Search</button>
         </form>
     </div>
-    <div class="row isotope-grid">
+    <div class="row">
         @foreach ($posts as $post)
-            <div class="card m-3" style="width: 18rem;">
-                <img src="{{ asset($post->thumb) }}" class="card-img-top" alt="...">
-                <div class="card-body mb-2">
-                    <h5 class="card-title">{{ $post->title }}</h5>
-                    <a href="{{ route('post.show', $post->slug) }}" class="card-link">Read</a>
-                </div>
-                <div class="blockquote-footer"> Author: {{ $post->user->name }}</div>
-                <div class="blockquote-footer"> {{ $post->likes->count() }} likes</div>
-                <div class="card-footer text-muted">
-                    At {{ $post->published_at }}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card m-3" style="width: 18rem;">
+                    <img src="{{ asset($post->thumb) }}" class="card-img-top" alt="...">
+                    <div class="card-body mb-2">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <a href="{{ route('post.show', $post->slug) }}" class="card-link">Read</a>
+                    </div>
+                    <div class="blockquote-footer"> Author: {{ $post->user->name }}</div>
+                    <div class="blockquote-footer"> {{ $post->likes->count() }} likes</div>
+                    <div class="card-footer text-muted">
+                        At {{ $post->published_at }}
+                    </div>
                 </div>
             </div>
         @endforeach

@@ -46,4 +46,9 @@ class PostFilter extends ModelFilter
             });
         }
     }
+
+    public function setup()
+    {
+        $this->published();
+    }
 }

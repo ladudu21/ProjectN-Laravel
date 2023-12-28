@@ -14,11 +14,7 @@ class NotificationController extends Controller
 {
     function index()
     {
-        $message_list = DB::table('notifications')
-            ->distinct()->get('message_id')->pluck('message_id')->toArray();
-
         $notifications = DB::table('notifications')
-            ->whereIn('message_id', $message_list)
             ->get()
             ->groupBy('message_id')
             ->map(function ($noti) {
@@ -52,7 +48,7 @@ class NotificationController extends Controller
             if ($validated['role'] == "all")
                 Notification::send(User::all()->except(Auth::id()), new AdminNotification($validated['message']));
             else {
-                Notification::send(User::role($validated['role'])->get(), new AdminNotification($validated['message']));
+                Notification::send(User::role($validated['role'])->except(Auth::id())->get(), new AdminNotification($validated['message']));
             }
         }
 

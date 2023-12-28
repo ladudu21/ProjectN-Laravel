@@ -71,7 +71,6 @@ class PostController extends Controller
                 }
             }
 
-
         } catch (Exception $e) {
             DB::rollback();
 
@@ -150,9 +149,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $path = str_replace('storage/', 'public/', $post->thumb);
-
-        Storage::delete($path);
         $post->delete();
 
         return back()->with('message', 'Deleted');

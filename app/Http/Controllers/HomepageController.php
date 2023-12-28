@@ -13,7 +13,7 @@ class HomepageController extends Controller
 {
     public function index(Request $request)
     {
-        $post = Post::filter($request->all())->paginate(8);
+        $post = Post::filter($request->all())->paginate(8)->withQueryString();
 
         return view('welcome', [
             'posts' => $post,

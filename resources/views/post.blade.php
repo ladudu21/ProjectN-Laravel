@@ -12,7 +12,7 @@
                 <p class="card-text">{{ $post->content }}</p>
                 @foreach ($post->tags as $tag)
                     <a class="btn btn-outline-primary btn-sm"
-                        href="{{ route('homepage', ['tag' => $tag->name]) }}">{{ $tag->name }}</a>
+                        href="{{ route('homepage', ['tag' => $tag->name]) }}">#{{ $tag->name }}</a>
                 @endforeach
             </div>
             <div class="card-footer d-flex">
