@@ -25,8 +25,16 @@
 
     <div class="mb-3">
         <label for="content">Content</label>
-        <textarea class="form-control" name="content" id="content" rows="5">{{ $post->content }}</textarea>
+        <textarea class="form-control" name="content" id="editor" rows="5">{{ $post->content }}</textarea>
     </div>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
     @error('content')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
