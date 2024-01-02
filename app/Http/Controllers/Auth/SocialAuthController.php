@@ -33,6 +33,10 @@ class SocialAuthController extends Controller
                 return redirect()->route('homepage');
 
             }else{
+                if (User::where('email', $user->email)->exists()){
+                    return redirect()->route('login')->with('message', 'Error');
+                }
+
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
@@ -78,6 +82,10 @@ class SocialAuthController extends Controller
                 return redirect('/dashboard');
 
             }else{
+                if (User::where('email', $user->email)->exists()){
+                    return redirect()->route('login')->with('message', 'Error');
+                }
+
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,

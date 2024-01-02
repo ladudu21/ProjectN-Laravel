@@ -15,10 +15,12 @@ class PostFilter extends ModelFilter
     */
     public $relations = [];
 
-    public function category($category_id)
+    public function category($category)
     {
-        if ($category_id){
-            return $this->where('category_id', $category_id);
+        if ($category){
+            return $this->WhereHas('category', function (Builder $query) use ($category) {
+                $query->where('slug', $category);
+            });
         }
     }
 

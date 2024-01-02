@@ -12,6 +12,9 @@
                 autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+        @if ($message = Session::get('message'))
+            <p style="color: white">{{ __($message) }}</p>
+        @endif
 
         <!-- Password -->
         <div class="mt-4">
