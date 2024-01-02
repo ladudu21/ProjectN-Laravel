@@ -5,11 +5,14 @@
             <div class="card-header">
                 <h1>{{ $post->title }}</h1>
                 <h6 class="card-subtitle text-muted mb-1">Writer: {{ $post->user->name }}</h6>
-                <div class="card-subtitle text-muted">at {{ $post->published_at }}</div>
+                <div class="card-subtitle text-muted">posted at {{ $post->published_at }}</div>
+                @if ($post->published_at != $post->updated_at)
+                    <div class="card-subtitle text-muted">updated at {{ $post->updated_at }}</div>
+                @endif
             </div>
 
             <div class="card-body text-dark">
-                <p class="card-text">{{ $post->content }}</p>
+                <p class="card-text">{!! $post->content !!}</p>
                 @foreach ($post->tags as $tag)
                     <a class="btn btn-outline-primary btn-sm"
                         href="{{ route('homepage', ['tag' => $tag->name]) }}">#{{ $tag->name }}</a>
@@ -19,10 +22,12 @@
                 @auth
                     @if ($post->likes->contains('user_id', Auth::user()->id))
                         <button class="btn btn-block btn-primary like">
+                            <span class="numl">{{ $post->likes->count() }}</span>
                             <i class="fa-solid fa-thumbs-up"></i>
                         </button>
                     @else
                         <button class="btn btn-block btn-secondary like">
+                            <span class="numl">{{ $post->likes->count() }}</span>
                             <i class="fa-solid fa-thumbs-up"></i>
                         </button>
                     @endif
@@ -41,7 +46,8 @@
                 <div class="card-body p-4">
                     <form class="form-outline mb-4" action="{{ route('comments.store', $post) }}" method="POST">
                         @csrf
-                        <label class="form-label" for="comment">Comments</label>
+                        <label class="form-label" for="comment">Comments<span
+                                class="text-muted"> - {{ $post->comments->count() }}</span> </label>
                         <input type="text" id="content" name="content" class="form-control"
                             placeholder="Type comment..." />
                         @error('content')
@@ -66,6 +72,7 @@
     @auth
         <script>
             $(".like").on("click", function() {
+
                 $.ajax({
                     url: '{{ route('likes.store', $post) }}',
                     type: 'POST',
@@ -74,10 +81,13 @@
                         post_id: {{ $post->id }},
                     },
                     success: function(rs) {
-                        console.log(rs);
-                        if ($(".like").hasClass('btn-secondary')) {
+                        if (rs.message == 'like') {
                             $(".like").removeClass('btn-secondary').addClass('btn-primary');
-                        } else $(".like").removeClass('btn-primary').addClass('btn-secondary');
+                            $(".numl").html(parseInt($(".numl").html(), 10) + 1);
+                        } else {
+                            $(".like").removeClass('btn-primary').addClass('btn-secondary');
+                            $(".numl").html(parseInt($(".numl").html(), 10) - 1);
+                        }
                     },
                 });
             });

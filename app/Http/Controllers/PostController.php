@@ -113,6 +113,10 @@ class PostController extends Controller
             $validated['thumb'] = $path;
         }
 
+        if ($request->input('delete_image') == 1) {
+            $validated['thumb'] = '/assets/noimg';
+        }
+
         DB::beginTransaction();
 
         try {

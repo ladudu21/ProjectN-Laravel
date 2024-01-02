@@ -8,31 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $like = $this->getLike($request)->first();
+        $message = '';
 
         if ($like) {
             $this->getLike($request)->delete();
+            $message = 'unlike';
+
         } else {
             $like_trashed = $this->getLike($request)->onlyTrashed()->first();
 
@@ -44,43 +28,13 @@ class LikeController extends Controller
                     'user_id' => Auth::user()->id
                 ]);
             }
+
+            $message = 'like';
         }
 
         return response()->json([
-            'message' => 'success',
+            'message' => $message,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Like $like)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Like $like)
-    {
-        //
     }
 
     function getLike(Request $request)

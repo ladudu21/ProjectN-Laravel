@@ -27,22 +27,16 @@
         <label for="content">Content</label>
         <textarea class="form-control" name="content" id="editor" rows="5">{{ $post->content }}</textarea>
     </div>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
     @error('content')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
     <div class="mb-3">
         <label for="thumb" class="form-label">Thumb</label>
-        <img class="img-thumbnail mb-2" src="{{ asset( $post->thumb ) }}" alt="" style="width: 10rem;">
+        <img class="img-thumbnail mb-2" src="{{ asset($post->thumb) }}" alt="" style="width: 10rem;" id="img-thumbnail">
         <input class="form-control" type="file" id="thumb" name="thumb">
+        <input type="hidden" name="delete_image" id="deleteImageInput" value=0>
+        <button type="button" id="deleteImage">Delete image</button>
     </div>
     @error('thumb')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -66,3 +60,17 @@
 
     <button type="submit" class="btn btn-primary rounded-pill">Update</button>
 </form>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    $('#deleteImage').click(function() {
+        $('#deleteImageInput').val(1);
+        $('#img-thumbnail').hide();
+    });
+</script>
