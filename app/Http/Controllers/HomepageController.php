@@ -28,11 +28,6 @@ class HomepageController extends Controller
         ]);
     }
 
-    function showNotifications()
-    {
-        return view('notifications');
-    }
-
     function changeLanguage($language)
     {
         Session::put('website_language', $language);

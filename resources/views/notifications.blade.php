@@ -14,7 +14,7 @@
                                     <h6 class="card-title">{{ $notification->data['from'] }}</h6>
                                     <p class="card-text">{{ $notification->data['message'] }}</p>
                                 </div>
-                                <a href="/" class="stretched-link"></a>
+                                <a href="{{ route('notifications.read', $notification->id) }}" class="stretched-link"></a>
                             </div>
                         </li>
                     @endforeach

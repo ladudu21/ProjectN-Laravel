@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('post/{post}/likes', [LikeController::class, 'store'])->name('likes.store');
 
     //Notifications
-    Route::get('notifications', [HomepageController::class, 'showNotifications'])->name('notifications.show');
+    Route::get('notifications', [NotificationController::class, 'showUserNotifications'])->name('notifications.list');
+    Route::get('notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 });
 
 require __DIR__ . '/auth.php';

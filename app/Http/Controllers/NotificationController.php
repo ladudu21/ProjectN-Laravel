@@ -83,4 +83,16 @@ class NotificationController extends Controller
         DB::table('notifications')->where('message_id', $message_id)->delete();
         return back()->with('message', 'Deleted');
     }
+
+    function showUserNotifications()
+    {
+        return view('notifications', [
+            'notifications' => Auth::user()->notifications,
+        ]);
+    }
+    function read($id) {
+        $notification = Auth::user()->notifications()->where('id', $id)->first();
+        $notification->markAsRead();
+        return redirect()->route('notifications.list');
+    }
 }

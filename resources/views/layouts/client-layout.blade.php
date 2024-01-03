@@ -60,7 +60,7 @@
                                         <i class="fa-solid fa-bell"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <a class="m-2" href="{{ route('notifications.show') }}">All notifications</a>
+                                        <a class="m-2" href="{{ route('notifications.list') }}">All notifications</a>
                                         <li id="newNoti"></li>
                                         @foreach ($notifications as $notification)
                                             <li>
@@ -69,7 +69,7 @@
                                                         <h6 class="card-title">{{ $notification->data['from'] }}</h6>
                                                         <p class="card-text">{{ $notification->data['message'] }}</p>
                                                     </div>
-                                                    <a href="/" class="stretched-link"></a>
+                                                    <a href="{{ route('notifications.read', $notification->id) }}" class="stretched-link"></a>
                                                 </div>
                                             </li>
                                         @endforeach
