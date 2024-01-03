@@ -34,6 +34,7 @@
                 @endauth
                 @guest
                     <button class="btn btn-block btn-secondary like">
+                        <span class="numl">{{ $post->likes->count() }}</span>
                         <i class="fa-solid fa-thumbs-up"></i>
                     </button>
                 @endguest

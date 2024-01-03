@@ -92,7 +92,11 @@ class NotificationController extends Controller
     }
     function read($id) {
         $notification = Auth::user()->notifications()->where('id', $id)->first();
+
         $notification->markAsRead();
-        return redirect()->route('notifications.list');
+
+        return view('noti-detail', [
+            'notification' => $notification
+        ]);
     }
 }

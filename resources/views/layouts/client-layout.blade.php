@@ -34,7 +34,8 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -69,7 +70,8 @@
                                                         <h6 class="card-title">{{ $notification->data['from'] }}</h6>
                                                         <p class="card-text">{{ $notification->data['message'] }}</p>
                                                     </div>
-                                                    <a href="{{ route('notifications.read', $notification->id) }}" class="stretched-link"></a>
+                                                    <a href="{{ route('notifications.read', $notification->id) }}"
+                                                        class="stretched-link"></a>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -93,7 +95,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container min-vh-100">
         @yield('content')
     </div>
 
@@ -112,7 +114,8 @@
                 var html =
                     '<div class="card bg-light m-2" style="width: 30rem;"><div class="card-body"><h6 class="card-title">' +
                     notification.from + '</h6><p class="card-text">' + notification.message +
-                    '</p></div><a href="/" class="stretched-link"></a></div>';
+                    '</p></div><a href="/notifications/' + (notification.id) + '/read"' +
+                    ' class="stretched-link"></a></div>';
 
                 $('#newNoti').append(html);
                 $('#noti-button').addClass('btn-danger');
