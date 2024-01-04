@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AccountCreated;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,6 +45,8 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($validated['role']);
+
+        AccountCreated::dispatch($user, $validated['password']);
 
         return back()->with('message', 'Success!');
     }

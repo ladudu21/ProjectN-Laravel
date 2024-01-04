@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\AccountCreated;
+use App\Listeners\SendEmailAccCreatedNotification;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -24,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        AccountCreated::class => [
+            SendEmailAccCreatedNotification::class
+        ]
     ];
 
     /**

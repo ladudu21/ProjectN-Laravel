@@ -21,7 +21,7 @@
         @foreach ($posts as $post)
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card m-3" style="width: 18rem;">
-                    <img src="{{ asset($post->thumb) }}" class="card-img-top" alt="...">
+                    <img src="{{ Storage::url($post->thumb) }}" class="card-img-top" alt="...">
                     <div class="card-body mb-2">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <a href="{{ route('post.show', $post->slug) }}" class="card-link">Read</a>

@@ -51,9 +51,10 @@ class PostController extends Controller
             $validated['status'] = 0;
 
         if ($request->hasFile('thumb')) {
-            $path = 'storage/' . $request->file('thumb')->store('thumbnails', 'public');
+            $path = $request->file('thumb')->store('thumbnails');
+
             $validated['thumb'] = $path;
-        } else $validated['thumb'] = '/assets/noimg';
+        } else $validated['thumb'] = '/public/noimg';
 
         DB::beginTransaction();
 
@@ -109,12 +110,12 @@ class PostController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('thumb')) {
-            $path = 'storage/' . $request->file('thumb')->store('thumbnails', 'public');
+            $path = $request->file('thumb')->store('thumbnails');
             $validated['thumb'] = $path;
         }
 
         if ($request->input('delete_image') == 1) {
-            $validated['thumb'] = '/assets/noimg';
+            $validated['thumb'] = '/public/noimg';
         }
 
         DB::beginTransaction();

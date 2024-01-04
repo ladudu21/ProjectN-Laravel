@@ -33,7 +33,7 @@
 
     <div class="mb-3">
         <label for="thumb" class="form-label">Thumb</label>
-        <img class="img-thumbnail mb-2" src="{{ asset($post->thumb) }}" alt="" style="width: 10rem;" id="img-thumbnail">
+        <img class="img-thumbnail mb-2" src="{{ Storage::url($post->thumb) }}" alt="" style="width: 10rem;" id="img-thumbnail">
         <input class="form-control" type="file" id="thumb" name="thumb">
         <input type="hidden" name="delete_image" id="deleteImageInput" value=0>
         <button type="button" id="deleteImage">Delete image</button>

@@ -33,10 +33,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
 
-        Category::create([
-            'name' => $validated['name'],
-            'slug' => $validated['slug'],
-        ]);
+        Category::create($validated);
 
         return back()->with('message', 'Success!');
     }
@@ -66,7 +63,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $category->update($validated);
-        
+
         return back()->with('message', 'Success!');
     }
 
