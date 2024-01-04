@@ -23,7 +23,7 @@
 
     <div class="mb-3">
         <label for="content">Content</label>
-        <textarea class="form-control" name="content" id="editor" rows="5"></textarea>
+        <textarea class="form-control" name="content" id="editor"></textarea>
     </div>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>

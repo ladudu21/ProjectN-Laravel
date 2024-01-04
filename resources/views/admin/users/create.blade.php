@@ -1,4 +1,5 @@
 @extends('admin.dashboard')
+@section('title', 'Add user')
 @section('content')
     <form action="{{ route('admin.users.store') }}" method="POST">
         @csrf

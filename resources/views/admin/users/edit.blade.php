@@ -1,4 +1,5 @@
 @extends('admin.dashboard')
+@section('title', 'Edit user')
 @section('content')
     <form action="{{ route('admin.users.update', $user) }}" method="POST">
         @csrf

@@ -1,4 +1,5 @@
 @extends('admin.dashboard')
+@section('title', 'Categories')
 @section('content')
     <table class="table">
         <thead>

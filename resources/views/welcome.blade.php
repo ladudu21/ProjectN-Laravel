@@ -17,6 +17,11 @@
                 btn-outline-success" type="submit">Search</button>
         </form>
     </div>
+    @if (request()->get('tag'))
+        <div class="container mt-3">
+            <p class="display-4"><strong>Tag:</strong> #{{ request()->get('tag') }}</p>
+        </div>
+    @endif
     <div class="row">
         @foreach ($posts as $post)
             <div class="col-sm-6 col-md-4 col-lg-3">

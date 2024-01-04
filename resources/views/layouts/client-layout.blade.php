@@ -53,34 +53,31 @@
                                     href="{{ route('writer.dashboard') }}">Writer</a>
                             </li>
                         @endrole
-                        @auth
-                            <li class="nav-item">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-coreui-toggle="dropdown"
-                                        aria-expanded="false" id="noti-button">
-                                        <i class="fa-solid fa-bell"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <a class="m-2" href="{{ route('notifications.list') }}">All notifications</a>
-                                        <li id="newNoti"></li>
-                                        @foreach ($notifications as $notification)
-                                            <li>
-                                                <div class="card m-2" style="width: 30rem;">
-                                                    <div class="card-body">
-                                                        <h6 class="card-title">{{ $notification->data['from'] }}</h6>
-                                                        <p class="card-text">{{ $notification->data['message'] }}</p>
-                                                    </div>
-                                                    <a href="{{ route('notifications.read', $notification->id) }}"
-                                                        class="stretched-link"></a>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </li>
-                        @endauth
                     </ul>
                     @auth
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-coreui-toggle="dropdown"
+                                aria-expanded="false" id="noti-button">
+                                <i class="fa-solid fa-bell"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="m-2" href="{{ route('notifications.list') }}">All notifications</a>
+                                <li id="newNoti"></li>
+                                @foreach ($notifications as $notification)
+                                    <li>
+                                        <div class="card m-2" style="width: 30rem;">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ $notification->data['from'] }}</h6>
+                                                <p class="card-text">{{ $notification->data['message'] }}</p>
+                                            </div>
+                                            <a href="{{ route('notifications.read', $notification->id) }}"
+                                                class="stretched-link"></a>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-responsive-nav-link :href="route('logout')"

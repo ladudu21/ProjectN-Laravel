@@ -1,4 +1,5 @@
 @extends('admin.dashboard')
+@section('title', 'Edit notification')
 @section('content')
     <form action="{{ route('admin.notifications.update', $notification->message_id) }}" method="POST">
         @csrf

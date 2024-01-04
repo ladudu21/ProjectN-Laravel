@@ -1,4 +1,5 @@
 @extends('admin.dashboard')
+@section('title', 'Add notification')
 @section('content')
     <form action="{{ route('admin.notifications.store') }}" method="POST">
         @csrf

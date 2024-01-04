@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Facades\View::composer(['layouts.client-layout'], function (View $view) {
+        Facades\View::composer(['layouts.client-layout', 'admin.dashboard'], function (View $view) {
             if (Auth::check()) {
                 $notifications = Auth::user()->unreadNotifications()->orderBy('created_at','desc')->get();
                 $view->with('notifications', $notifications);
