@@ -31,7 +31,7 @@
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <a href="{{ route('post.show', $post->slug) }}" class="card-link">Read</a>
                     </div>
-                    <div class="blockquote-footer"> Author: {{ $post->user->name }}</div>
+                    <div class="blockquote-footer"> Author: {{ $post->author->name }}</div>
                     <div class="blockquote-footer"> {{ $post->likes->count() }} likes</div>
                     <div class="card-footer text-muted">
                         At {{ $post->published_at }}

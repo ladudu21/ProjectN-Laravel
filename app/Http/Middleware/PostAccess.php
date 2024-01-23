@@ -16,7 +16,7 @@ class PostAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!($request->route('post')->user_id == Auth::user()->id)) {
+        if (!($request->route('post')->author_id == Auth::guard('admin')->user()->id)) {
             abort(403);
         }
 

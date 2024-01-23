@@ -14,22 +14,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            PermissionSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class,
         ]);
 
-        User::factory()
-            ->count(5)
-            ->create()->each(function ($user) {
-                $user->assignRole('user');
-            });
-        ;
+        // User::factory()
+        //     ->count(5)
+        //     ->create()->each(function ($user) {
+        //         $user->assignRole('user');
+        //     });
+        // ;
 
-        User::factory()
-            ->count(5)
-            ->create()->each(function ($user) {
-                $user->assignRole('writer');
-            });
-        ;
+        // User::factory()
+        //     ->count(5)
+        //     ->create()->each(function ($user) {
+        //         $user->assignRole('writer');
+        //     });
+        // ;
     }
 }

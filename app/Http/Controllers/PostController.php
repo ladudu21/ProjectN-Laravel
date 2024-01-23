@@ -21,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'posts' => Post::paginate(10)
+            'posts' => Auth::guard('admin')->user()->posts()->paginate(10)
         ]);
     }
 
@@ -42,7 +42,7 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        $validated['user_id'] = Auth::user()->id;
+        $validated['author_id'] = Auth::guard('admin')->user()->id;
         $validated['slug'] = Str::slug($validated['title']) . '-' . Str::random(5);
 
         if (is_null($validated['published_at'])) {
@@ -54,7 +54,7 @@ class PostController extends Controller
             $path = $request->file('thumb')->store('thumbnails');
 
             $validated['thumb'] = $path;
-        } else $validated['thumb'] = '/public/noimg';
+        } else $validated['thumb'] = 'noimg.jpg';
 
         DB::beginTransaction();
 
@@ -115,7 +115,7 @@ class PostController extends Controller
         }
 
         if ($request->input('delete_image') == 1) {
-            $validated['thumb'] = '/public/noimg';
+            $validated['thumb'] = 'noimg.jpg';
         }
 
         DB::beginTransaction();

@@ -18,7 +18,7 @@
                 <tr>
                     <th>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->user->name }}</td>
+                    <td>{{ $post->author->name }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>{{ $post->published_at }}</td>
                     <td>{{ $post->status ? 'Released' : 'Unreleased' }}</td>

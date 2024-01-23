@@ -17,7 +17,7 @@
                 @foreach ($roles as $role)
                     <option value="{{ $role->name }}">{{ $role->name }}</option>
                 @endforeach
-                <option value="all">all</option>
+                <option value="user">user</option>
             </select>
             <label for="role">Role</label>
         </div>
@@ -29,6 +29,7 @@
             <table class="table table-bordered table-striped mb-0">
                 <thead>
                     <tr>
+                        <th>Check</th>
                         <th>Name</th>
                         <th>Email</th>
                     </tr>

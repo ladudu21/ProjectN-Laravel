@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,7 @@ class AccountCreated extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(User $user, $password)
+    public function __construct(Admin $user, $password)
     {
         $this->user = $user;
         $this->password = $password;

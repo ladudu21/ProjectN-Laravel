@@ -4,7 +4,7 @@
         <div class="card border-dark m-3">
             <div class="card-header">
                 <h1>{{ $post->title }}</h1>
-                <h6 class="card-subtitle text-muted mb-1">Writer: {{ $post->user->name }}</h6>
+                <h6 class="card-subtitle text-muted mb-1">Author: {{ $post->author->name }}</h6>
                 <div class="card-subtitle text-muted">posted at {{ $post->published_at }}</div>
                 @if ($post->published_at != $post->updated_at)
                     <div class="card-subtitle text-muted">updated at {{ $post->updated_at }}</div>

@@ -15,7 +15,6 @@ class DatabaseChannel extends Notification
 
         return $notifiable->routeNotificationFor('database')->create([
             'id' => $notification->id,
-            'notifiable_type' => \Auth::user()->id,
             'type' => get_class($notification),
             'data' => $data,
             'message_id' => $message_id,

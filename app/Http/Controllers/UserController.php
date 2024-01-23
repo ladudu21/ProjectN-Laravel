@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\AccountCreated;
 use App\Http\Requests\UserRequest;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,47 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index', [
+        return view('admin.users.usr-index', [
             'users' => User::paginate(10)
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin.users.create', [
-            'roles' => Role::all()
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(UserRequest $request)
-    {
-        $validated = $request->validated();
-
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-        ]);
-
-        $user->assignRole($validated['role']);
-
-        AccountCreated::dispatch($user, $validated['password']);
-
-        return back()->with('message', 'Success!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -66,7 +29,6 @@ class UserController extends Controller
     {
         return view('admin.users.edit', [
             'user' => $user,
-            'roles' => Role::all()
         ]);
     }
 
@@ -76,9 +38,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $validated = $request->validated();
-        $user->syncRoles($validated['role']);
 
-        $validated = $request->safe()->except(['role']);
         $user->update($validated);
 
         return back()->with('message', 'Success!');
@@ -94,8 +54,8 @@ class UserController extends Controller
     }
 
     function getUsersByRole(Request $request) {
-        if ($request->role == "all") $users = User::all();
-        else $users = User::role($request->role)->get();
+        if ($request->role == "user") $users = User::all();
+        else $users = Admin::role($request->role)->get();
 
         return response()->json([
             'users' => $users

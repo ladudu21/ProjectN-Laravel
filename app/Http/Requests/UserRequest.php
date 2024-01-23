@@ -27,7 +27,6 @@ class UserRequest extends FormRequest
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($this->route('user'))],
             'password' => ['sometimes', 'required', Password::defaults()],
             'name' => 'required|string|max:255',
-            'role' => 'required'
         ];
     }
 }

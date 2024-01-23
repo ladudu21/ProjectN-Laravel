@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -19,7 +20,7 @@ class AccountCreated
     /**
      * Create a new event instance.
      */
-    public function __construct(User $user, $password)
+    public function __construct(Admin $user, $password)
     {
         $this->user = $user;
         $this->password = $password;

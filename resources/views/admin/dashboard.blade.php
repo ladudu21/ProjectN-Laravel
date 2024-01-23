@@ -45,12 +45,29 @@
                         <use xlink:href="/template/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
                     </svg> User</a>
                 <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}"><span
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.ad_index') }}"><span
                                 class="nav-icon"></span>
-                            Index</a></li>
+                            Admin Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.usr_index') }}"><span
+                                class="nav-icon"></span>
+                            User Index</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.create') }}"><span
                                 class="nav-icon"></span>
                             Add user</a></li>
+                </ul>
+            </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="/template/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+                    </svg> Authorization</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('admin.authorizations.assign_permission_form') }}"><span
+                                class="nav-icon"></span>
+                            Permission to Role</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('admin.authorizations.assign_role_form') }}"><span class="nav-icon"></span>
+                            Role to User</a></li>
                 </ul>
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -150,7 +167,7 @@
                                 <svg class="icon me-2">
                                     <use xlink:href="/template/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                                 </svg> Profile</a>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
                                 <a class="dropdown-item"
                                     onclick="event.preventDefault();

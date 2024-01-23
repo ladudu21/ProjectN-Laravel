@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
@@ -39,20 +40,30 @@ class NotificationController extends Controller
             'role' => 'required',
             'list_check' => 'sometimes'
         ]);
-
         if (array_key_exists('list_check', $validated)) {
-            foreach ($validated['list_check'] as $user_id) {
-                Notification::send(User::find($user_id), new AdminNotification($validated['message']));
+            if ($validated['role'] == 'user') {
+                foreach ($validated['list_check'] as $user_id) {
+                    $this->sendNoti(User::find($user_id), $validated['message']);
+                }
+            } else {
+                foreach ($validated['list_check'] as $user_id) {
+                    $this->sendNoti(Admin::find($user_id), $validated['message']);
+                }
             }
         } else {
-            if ($validated['role'] == "all")
-                Notification::send(User::all()->except(Auth::id()), new AdminNotification($validated['message']));
-            else {
-                Notification::send(User::role($validated['role'])->except(Auth::id())->get(), new AdminNotification($validated['message']));
+            if ($validated['role'] == 'user') {
+                $this->sendNoti(User::all(), $validated['message']);
+            } else {
+                $this->sendNoti(Admin::role($validated['role'])->get(), $validated['message']);
             }
         }
 
         return back()->with('message', 'Success');
+    }
+
+    public function sendNoti($collection, $message)
+    {
+        return Notification::send($collection, new AdminNotification($message));
     }
 
     function edit(Request $request, $id)
@@ -90,7 +101,8 @@ class NotificationController extends Controller
             'notifications' => Auth::user()->notifications,
         ]);
     }
-    function read($id) {
+    function read($id)
+    {
         $notification = Auth::user()->notifications()->where('id', $id)->first();
 
         $notification->markAsRead();

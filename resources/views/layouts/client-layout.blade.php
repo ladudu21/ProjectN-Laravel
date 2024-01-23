@@ -41,20 +41,13 @@
                                 <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @endauth
-                        @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page"
                                     href="{{ route('admin.dashboard') }}">Admin</a>
                             </li>
-                        @endrole
-                        @role('writer')
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href="{{ route('writer.dashboard') }}">Writer</a>
-                            </li>
-                        @endrole
                     </ul>
                     @auth
+                    <p>{{ Auth::user()->name }}</p>
                         <div class="dropdown">
                             <button class="btn dropdown-toggle" type="button" data-coreui-toggle="dropdown"
                                 aria-expanded="false" id="noti-button">

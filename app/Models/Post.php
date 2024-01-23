@@ -20,7 +20,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'category_id',
-        'user_id',
+        'author_id',
         'content',
         'thumb',
         'published_at',
@@ -38,9 +38,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user(): BelongsTo
+    public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 
     public function comments(): HasMany

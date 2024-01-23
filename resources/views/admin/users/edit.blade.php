@@ -20,21 +20,6 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        <div class="form-floating mb-3">
-            @php
-                $role_name = $user->getRoleNames()->implode('name', ', ');
-            @endphp
-            <select class="form-select" aria-label="Default select example" id="role" name="role">
-                @foreach ($roles as $role)
-                    <option value="{{ $role->name }}" {{ $role->name == $role_name ? 'selected' : ''}}>{{ $role->name }}</option>
-                @endforeach
-            </select>
-            <label for="role">Role</label>
-        </div>
-        @error('role')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-
         <button type="submit" class="btn btn-primary rounded-pill">Edit</button>
     </form>
 @endsection
